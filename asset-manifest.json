@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/React-eClass/static/css/main.759cbe3e.css",
-    "main.js": "/React-eClass/static/js/main.a84517d6.js",
+    "main.js": "/React-eClass/static/js/main.402cbd5c.js",
     "static/media/spotify_bg.jpg": "/React-eClass/static/media/spotify_bg.d009641201a5c350e627.jpg",
     "index.html": "/React-eClass/index.html",
     "main.759cbe3e.css.map": "/React-eClass/static/css/main.759cbe3e.css.map",
-    "main.a84517d6.js.map": "/React-eClass/static/js/main.a84517d6.js.map"
+    "main.402cbd5c.js.map": "/React-eClass/static/js/main.402cbd5c.js.map"
   },
   "entrypoints": [
     "static/css/main.759cbe3e.css",
-    "static/js/main.a84517d6.js"
+    "static/js/main.402cbd5c.js"
   ]
 }
