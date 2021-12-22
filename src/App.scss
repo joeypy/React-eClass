@@ -1,0 +1,64 @@
+.login-view {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  .app-header {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    .btn {
+      margin-bottom: 2rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      background-color: hsl(120, 96%, 9%);
+      padding: 1rem 1.5rem;
+      border-top-right-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+      font-weight: bold;
+      animation: bounce 3s ease infinite;
+      box-shadow: 10px 10px 23px -3px rgba(0, 0, 0, 0.34);
+      -webkit-box-shadow: 10px 10px 23px -3px rgba(0, 0, 0, 0.34);
+      -moz-box-shadow: 10px 10px 23px -3px rgba(0, 0, 0, 0.34);
+      transition: all 0.3s;
+
+      &:hover {
+        filter: brightness(140%);
+      }
+
+      &,
+      &:link,
+      &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-50%) translateY(0);
+  }
+  50% {
+    transform: translateY(-50%) translateY(-10px);
+  }
+  100% {
+    transform: translateY(-50%) translateY(0);
+  }
+}
+
+.btn-logout {
+  color: white;
+  background-color: hsl(120, 38%, 42%);
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 30px;
+  align-self: center;
+  width: 100px;
+}
