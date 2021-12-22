@@ -17,3 +17,7 @@ To Run the dev server:
 To Visit App:
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Demo
+
+[Demo spotify](https://joeypy.github.io/React-eClass/)
