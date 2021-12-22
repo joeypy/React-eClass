@@ -5,7 +5,7 @@ import Dashboard from "./components/Dashboard";
 
 function App() {
   const CLIENT_ID = "99ab8f9cc8604280bcf6069521fd7810";
-  const REDIRECT_URI = "http://localhost:3000";
+  const REDIRECT_URI = "https://joeypy.github.io/React-eClass/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
@@ -45,7 +45,7 @@ function App() {
     >
       <div className="app-header">
         {!token && (
-          <a
+           <a
             className="btn"
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >

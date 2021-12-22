@@ -18,7 +18,6 @@ const Dashboard = ({ token }: any) => {
 
   const chooseTrack = (track: any) => {
     setPlayingTrack(track);
-    setSearch("");
   };
 
   useEffect(() => {
