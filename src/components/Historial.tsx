@@ -47,6 +47,7 @@ const Historial = () => {
   };
 
   useEffect(() => {
+    
     try {
       let stateLocalStore = localStorage.getItem("state");
       if (stateLocalStore !== null) {

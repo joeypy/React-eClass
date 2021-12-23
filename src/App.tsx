@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.scss";
 import { spotifyBg } from "./assets";
 import Dashboard from "./components/Dashboard";
+import SpotifyWebApi from "spotify-web-api-node";
 
 function App() {
   const CLIENT_ID = "90bff2091ffe456d8f39bb64533e91d0";
@@ -9,7 +10,9 @@ function App() {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
-  // https://accounts.spotify.com/authorize?client_id=8b945ef10ea24755b83ac50cede405a0&response_type=code&redirect_uri=http://localhost:3000&
+  const spotifyApi = new SpotifyWebApi({
+    clientId: "90bff2091ffe456d8f39bb64533e91d0",
+  });
 
   const [token, setToken] = useState("");
 
@@ -17,6 +20,10 @@ function App() {
     setToken("");
     window.localStorage.removeItem("token");
   };
+
+  useEffect(() => {
+    if (!token) return;
+  }, [token]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -40,7 +47,23 @@ function App() {
     console.log(token);
   };
 
-  const getHistorial = () => {};
+  const getHistorial = () => {
+    spotifyApi.setAccessToken(token);
+    spotifyApi
+      .getMyRecentlyPlayedTracks({
+        limit: 20,
+      })
+      .then(
+        function (data) {
+          // Output items
+          console.log("Your 20 most recently played tracks are:");
+          data.body.items.forEach((item) => console.log(item.track));
+        },
+        function (err) {
+          console.log("Something went wrong!", err);
+        }
+      );
+  };
 
   return (
     <div
@@ -51,7 +74,7 @@ function App() {
         {!token && (
           <a
             className="btn"
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`}
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=streaming%20user-read-email%20user-read-private%20playlist-read-private%20playlist-modify-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state%20user-read-recently-played`}
           >
             Login to Spotify
           </a>
