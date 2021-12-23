@@ -1,0 +1,48 @@
+.home {
+  background-color: hsl(234, 100%, 8%);
+  color: white;
+  font-weight: bold;
+  min-height: 100vh;
+
+  .header {
+    display: flex;
+    height: 10vh;
+
+    &__logo {
+      background-color: hsla(0, 0%, 13%, 0.685);
+      font-size: 2rem;
+      width: 25vw;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+
+      &-icon {
+        margin: 0 1rem;
+      }
+    }
+
+    &__search {
+      background-color: hsla(0, 0%, 13%, 0.685);
+      width: 75vw;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .main {
+    height: 90vh;
+    display: flex;
+
+    &__historial {
+      background: rgb(0, 0, 0);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, hsla(0, 0%, 13%, 0.685) 100%);
+      flex-grow: 1;
+    }
+
+    &__list-songs {
+      background: rgb(2, 0, 36);
+      background: linear-gradient(0deg, rgba(0, 0, 10, 8) 0%, rgb(4, 4, 80) 100%);
+      width: 75vw;
+    }
+  }
+}

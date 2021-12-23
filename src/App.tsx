@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.scss";
-import { spotifyBg } from "./assets";
+import { spotifyBg, icon } from "./assets";
 import Dashboard from "./components/Dashboard";
 import SpotifyWebApi from "spotify-web-api-node";
 
@@ -76,6 +76,7 @@ function App() {
             className="btn"
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=streaming%20user-read-email%20user-read-private%20playlist-read-private%20playlist-modify-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state%20user-read-recently-played`}
           >
+            <img className="icon" src={icon} alt="Icono" />
             Login to Spotify
           </a>
         )}

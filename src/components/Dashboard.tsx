@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Form } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-node";
 import TrackSearchResult from "./TrackSearchResult";
-import Player from "./Player";
+import Player from "./Player/Player";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "90bff2091ffe456d8f39bb64533e91d0",
