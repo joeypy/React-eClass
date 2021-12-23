@@ -1,0 +1,28 @@
+.search {
+  flex: 0 0 40%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 200px;
+    width: 100%;
+    transition: all 0.2s;
+    margin-right: -3.25rem;
+    z-index: 1;
+
+    &:focus {
+      width: 100%;
+      outline: none;
+      color: rgb(98, 163, 0);
+      background-color: var(--color-grey-light-3);
+    }
+  }
+}

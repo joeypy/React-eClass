@@ -35,13 +35,13 @@
 
     &__historial {
       background: rgb(0, 0, 0);
-      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, hsla(0, 0%, 13%, 0.685) 100%);
+      background: linear-gradient(0deg, rgb(0, 0, 0) 0%, hsla(0, 0%, 13%, 0.685) 100%);
       flex-grow: 1;
     }
 
     &__list-songs {
-      background: rgb(2, 0, 36);
-      background: linear-gradient(0deg, rgba(0, 0, 10, 8) 0%, rgb(4, 4, 80) 100%);
+      background: rgb(0, 32, 0);
+      background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(0, 32, 0) 100%);
       width: 75vw;
     }
   }

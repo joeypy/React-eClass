@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./App.scss";
 import { spotifyBg, icon } from "./assets";
 import Dashboard from "./components/Dashboard";
 import SpotifyWebApi from "spotify-web-api-node";
+import "./App.scss";
 
 function App() {
   const CLIENT_ID = "90bff2091ffe456d8f39bb64533e91d0";
