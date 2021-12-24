@@ -26,6 +26,11 @@
       width: 75vw;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+
+      button {
+        margin-right: 2rem;
+      }
     }
   }
 
@@ -40,6 +45,7 @@
     }
 
     &__list-songs {
+      position: relative;
       background: rgb(0, 32, 0);
       background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(0, 32, 0) 100%);
       width: 75vw;

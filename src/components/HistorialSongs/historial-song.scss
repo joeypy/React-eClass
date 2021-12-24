@@ -1,6 +1,11 @@
 .history {
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
+
+  .content {
+    overflow-y: auto;
+  }
 
   h3 {
     text-align: center;
