@@ -35,7 +35,7 @@ const Dashboard = () => {
       window.localStorage.setItem('token', token);
     }
     dispatch(set(token));
-    console.log("dashboard",token);
+    console.log('dashboard', token);
 
     if (!token) {
       navigate('/');
@@ -45,8 +45,9 @@ const Dashboard = () => {
   const handleLogout = () => {
     dispatch(clear());
     window.localStorage.removeItem('token');
+    navigate('/');
   };
-  
+
   return (
     <div className="home">
       <header className="header">
@@ -56,7 +57,9 @@ const Dashboard = () => {
         </div>
         <div className="header__search">
           <SearchInput />
-          <button onClick={() => handleLogout()}>Logout</button>
+          <button className="btn btn--logout" onClick={() => handleLogout()}>
+            Logout
+          </button>
         </div>
       </header>
 

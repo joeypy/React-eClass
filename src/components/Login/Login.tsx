@@ -1,5 +1,6 @@
 import React from 'react';
 import { spotifyBg, icon } from '../../assets';
+import './login.scss';
 
 const Login = () => {
   const CLIENT_ID = '90bff2091ffe456d8f39bb64533e91d0';
