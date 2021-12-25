@@ -3,10 +3,14 @@ import { spotifyBg, icon } from '../../assets';
 import './login.scss';
 
 const Login = () => {
+  // To run in gh-pages
   const CLIENT_ID = '90bff2091ffe456d8f39bb64533e91d0';
   const REDIRECT_URI = 'http://localhost:3000/dashboard';
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
   const RESPONSE_TYPE = 'token';
+  
+  // For run in local
+  // const REDIRECT_URI = 'http://localhost:3000/dashboard';
 
   return (
     <div className="App login-view" style={{ backgroundImage: `url(${spotifyBg})` }}>

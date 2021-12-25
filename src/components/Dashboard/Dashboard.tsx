@@ -15,10 +15,17 @@ const Dashboard = () => {
   const { token, id_client } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
+  const [playingTrack, setPlayingTrack] = useState({
+    uri: '',
+  });
 
   const spotifyApi = new SpotifyWebApi({
     clientId: id_client,
   });
+
+  const chooseTrack = (track: any) => {
+    setPlayingTrack(track);
+  };
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -69,7 +76,7 @@ const Dashboard = () => {
         </div>
         <div className="main__list-songs">
           <ListSongs />
-          <Player />
+          <Player accessToken={token} trackUri={playingTrack.uri} />
         </div>
       </main>
     </div>

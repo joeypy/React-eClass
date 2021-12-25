@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { empty } from '../../assets';
 import { selectAuth } from '../../features/authentication/authSlice';
-import { selectSong, setHistorial } from '../../features/songs/songSlice';
+import { selectSong, setHistorial, setPlay, Songs } from '../../features/songs/songSlice';
 import Recently from '../Recently/Recently';
 import './historial-song.scss';
 
@@ -17,14 +18,12 @@ const HistorialSongs = () => {
 
   useEffect(() => {
     spotifyApi.setAccessToken(token);
-    console.log('historial token', token);
     spotifyApi
       .getMyRecentlyPlayedTracks({
         limit: 20,
       })
       .then((data: any) => {
         // Output items
-        console.log('Your 20 most recently played tracks are:');
         let historialData = data.body.items.map((item: any) => {
           const smallestAlbumImage = item.track.album.images.reduce((smallest: any, image: any) => {
             if (image.height < smallest.height) return image;
@@ -39,31 +38,38 @@ const HistorialSongs = () => {
           };
         });
         dispatch(setHistorial(historialData));
-        console.log(historialData);
-        // console.log('hola');
       })
       .catch((error: any) => {
         console.log('Something went wrong!', error);
       });
-  }, [token]);
+  }, [token, songs.play_song]);
 
-  const handlePlay = () => {};
+  const handlePlay = (song: Songs) => {
+    dispatch(setPlay(song));
+  };
 
   return (
     <div className="history">
       <h3>Recently played</h3>
-      <div className="content" id="style-1">
-        <ul>
-          {songs.historial.map((song, index) => (
-            <>
-              {index > 0 ? <hr style={{ width: '90%' }} /> : undefined}
-              <li key={song.uri}>
-                <Recently song={song} handlePlay={handlePlay} />
-              </li>
-            </>
-          ))}
-        </ul>
-      </div>
+      {songs.historial.length < 1 ? (
+        <div className="no-songs">
+          <img src={empty} alt="Music logo" className="empty-list" style={{ height: '84px', width: '84px' }} />
+          <h3>You still have no track record!</h3>
+        </div>
+      ) : (
+        <div className="content" id="style-1">
+          <ul>
+            {songs.historial.map((song, index) => (
+              <div key={song.uri + song.title + index}>
+                {index > 0 ? <hr style={{ width: '90%' }} /> : undefined}
+                <li>
+                  <Recently song={song} handlePlay={() => handlePlay(song)} />
+                </li>
+              </div>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

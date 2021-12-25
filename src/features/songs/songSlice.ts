@@ -11,11 +11,18 @@ export interface Songs {
 export interface SongState {
   list_songs: Array<Songs>;
   historial: Array<Songs>;
+  play_song: Songs;
 }
 
 const initialState: SongState = {
   list_songs: [],
   historial: [],
+  play_song: {
+    artist: '',
+    title: '',
+    uri: '',
+    albumUrl: '',
+  },
 };
 
 export const songSlice = createSlice({
@@ -29,10 +36,13 @@ export const songSlice = createSlice({
     setHistorial: (state, action) => {
       state.historial = action.payload;
     },
+    setPlay: (state, action) => {
+      state.play_song = action.payload;
+    },
   },
 });
 
-export const { setSongs, setHistorial } = songSlice.actions;
+export const { setSongs, setHistorial, setPlay } = songSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

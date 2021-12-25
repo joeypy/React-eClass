@@ -1,32 +1,41 @@
 import React from 'react';
-import { play } from '../../assets';
-import Player from '../Player/Player';
+import { empty, play } from '../../assets';
 import './list-song.scss';
-import { selectSong } from '../../features/songs/songSlice';
-import { useAppSelector } from '../../app/hooks';
+import { selectSong, Songs, setPlay } from '../../features/songs/songSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 const ListSongs = () => {
   const songs = useAppSelector(selectSong);
+  const dispatch = useAppDispatch();
 
-  console.log('show songs', songs.list_songs);
+  const handlePlay = (song: Songs) => {
+    dispatch(setPlay(song));
+  };
 
-  const handlePlay = () => {};
+  console.log('type', songs.list_songs);
 
   return (
-    <div className="song-container" id="style-1">
-      {songs.list_songs.map((song) => (
-        // <TrackSearchResult track={track} key={track.uri} chooseTrack={chooseTrack} />
-        <div key={song.uri} className="song" style={{ cursor: 'pointer' }} onClick={handlePlay}>
-          <img src={song.albumUrl} alt={song.title} style={{ height: '84px', width: '84px' }} className="song__img" />
-          <div className="song__info">
-            <div>{song.title}</div>
-            <div className="text-muted">{song.artist}</div>
-          </div>
-          <div className="song__button">
-            <img src={play} alt="Play button" />
-          </div>
+    <div className={songs.list_songs.length < 1 ? 'song-container flex' : 'song-container'} id="style-1">
+      {songs.list_songs.length < 1 ? (
+        <div className="no-songs">
+          <img src={empty} alt="Music logo" className="empty-list" style={{ height: '84px', width: '84px' }} />
+          <h1>Search a song and get start listening!</h1>
         </div>
-      ))}
+      ) : (
+        songs.list_songs.map((song) => (
+          // <TrackSearchResult track={track} key={track.uri} chooseTrack={chooseTrack} />
+          <div key={song.uri} className="song" style={{ cursor: 'pointer' }} onClick={() => handlePlay(song)}>
+            <img src={song.albumUrl} alt={song.title} style={{ height: '84px', width: '84px' }} className="song__img" />
+            <div className="song__info">
+              <div>{song.title}</div>
+              <div className="text-muted">{song.artist}</div>
+            </div>
+            <div className="song__button">
+              <img src={play} alt="Play button" />
+            </div>
+          </div>
+        ))
+      )}
     </div>
   );
 };

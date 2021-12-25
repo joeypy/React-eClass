@@ -46,7 +46,6 @@ const SearchInput = () => {
   }, [search, token]);
 
   useEffect(() => {
-    console.log('store songs', searchResults);
     dispatch(setSongs(searchResults));
   }, [searchResults]);
 
