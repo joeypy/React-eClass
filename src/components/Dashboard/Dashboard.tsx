@@ -8,30 +8,22 @@ import HistorialSong from '../HistorialSongs/HistorialSongs';
 import ListSongs from '../ListSongs/ListSongs';
 import Player from '../Player/Player';
 import SearchInput from '../SearchInput/SearchInput';
-import { set, clear } from '../../features/authentication/authSlice';
+import { setToken, clearAuth } from '../../features/authentication/authSlice';
+import { setHistorial } from '../../features/songs/songSlice';
 import './dashboard.scss';
 
 const Dashboard = () => {
   const { token, id_client } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
-  const [playingTrack, setPlayingTrack] = useState({
-    uri: '',
-  });
 
-  const spotifyApi = new SpotifyWebApi({
-    clientId: id_client,
-  });
-
-  const chooseTrack = (track: any) => {
-    setPlayingTrack(track);
-  };
-
+  // Get the access token from the url and set it in state
+  // and check the localstore for token or historial
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem('token');
 
-    if (!token && hash) {
+    if (hash) {
       token = hash
         .substring(1)
         .split('&')
@@ -41,16 +33,18 @@ const Dashboard = () => {
       window.location.hash = '';
       window.localStorage.setItem('token', token);
     }
-    dispatch(set(token));
-    console.log('dashboard', token);
+    dispatch(setToken(token));
+    dispatch(setHistorial(JSON.parse(localStorage.getItem('historial'))));
 
+    // if the token doesn't exist, redirect to the login page
     if (!token) {
       navigate('/');
     }
   }, [token, dispatch, navigate]);
 
+  // Logout function
   const handleLogout = () => {
-    dispatch(clear());
+    dispatch(clearAuth());
     window.localStorage.removeItem('token');
     navigate('/');
   };
@@ -63,7 +57,7 @@ const Dashboard = () => {
           <span>Spotify</span>
         </div>
         <div className="header__search">
-          <SearchInput />
+          <SearchInput handleLogout={handleLogout} />
           <button className="btn btn--logout" onClick={() => handleLogout()}>
             Logout
           </button>
@@ -72,11 +66,11 @@ const Dashboard = () => {
 
       <main className="main">
         <div className="main__historial">
-          <HistorialSong />
+          <HistorialSong handleLogout={handleLogout} />
         </div>
         <div className="main__list-songs">
           <ListSongs />
-          <Player accessToken={token} trackUri={playingTrack.uri} />
+          <Player accessToken={token} />
         </div>
       </main>
     </div>

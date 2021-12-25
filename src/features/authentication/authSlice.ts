@@ -16,19 +16,16 @@ export const authSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    set: (state, action) => {
+    setToken: (state, action) => {
       state.token = action.payload;
     },
-    clear: (state) => {
-      return {
-        token: null,
-        id_client: '90bff2091ffe456d8f39bb64533e91d0',
-      };
+    clearAuth: (state) => {
+      return initialState;
     },
   },
 });
 
-export const { set, clear } = authSlice.actions;
+export const { setToken, clearAuth } = authSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

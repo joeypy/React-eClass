@@ -8,11 +8,10 @@ const ListSongs = () => {
   const songs = useAppSelector(selectSong);
   const dispatch = useAppDispatch();
 
+  // set the song to play in the global state
   const handlePlay = (song: Songs) => {
     dispatch(setPlay(song));
   };
-
-  console.log('type', songs.list_songs);
 
   return (
     <div className={songs.list_songs.length < 1 ? 'song-container flex' : 'song-container'} id="style-1">

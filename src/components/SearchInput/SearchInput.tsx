@@ -5,17 +5,19 @@ import { selectAuth } from '../../features/authentication/authSlice';
 import { setSongs } from '../../features/songs/songSlice';
 import './search-input.scss';
 
-const SearchInput = () => {
+const SearchInput = ({ handleLogout }: any) => {
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   // store
   const { token, id_client } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
 
+  // Instance to make API request in spotify
   const spotifyApi = new SpotifyWebApi({
     clientId: id_client,
   });
 
+  // Make a request to the API to get the historial recently play
   useEffect(() => {
     if (!search) return setSearchResults([]);
     if (!token) return;
@@ -41,10 +43,12 @@ const SearchInput = () => {
         );
       })
       .catch((error: any) => {
-        console.log('error search', error);
+        console.log('Authentication error', error);
+        handleLogout();
       });
   }, [search, token]);
 
+  // Update the list of songs went the search is updated
   useEffect(() => {
     dispatch(setSongs(searchResults));
   }, [searchResults]);

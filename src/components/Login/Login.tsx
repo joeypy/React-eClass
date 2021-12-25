@@ -1,14 +1,17 @@
 import React from 'react';
+import { useAppSelector } from '../../app/hooks';
 import { spotifyBg, icon } from '../../assets';
+import { selectAuth } from '../../features/authentication/authSlice';
 import './login.scss';
 
 const Login = () => {
+  const { id_client } = useAppSelector(selectAuth);
   // To run in gh-pages
-  const CLIENT_ID = '90bff2091ffe456d8f39bb64533e91d0';
-  const REDIRECT_URI = 'http://localhost:3000/dashboard';
+  const CLIENT_ID = id_client;
+  const REDIRECT_URI = 'https://joeypy.github.io/React-eClass/';
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
   const RESPONSE_TYPE = 'token';
-  
+
   // For run in local
   // const REDIRECT_URI = 'http://localhost:3000/dashboard';
 
@@ -28,15 +31,3 @@ const Login = () => {
 };
 
 export default Login;
-
-//   <div>
-//     {token && (
-//       <div style={{ display: 'flex', flexDirection: 'column' }}>
-//         <Dashboard token={token} />
-//         <button className="btn-logout" onClick={logout}>
-//           Logout
-//         </button>
-//         <button className="btn-logout" onClick={getHistorial}>
-//           Get historial
-//         </button>
-//       </div>

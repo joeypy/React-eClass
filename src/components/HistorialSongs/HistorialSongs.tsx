@@ -7,7 +7,7 @@ import { selectSong, setHistorial, setPlay, Songs } from '../../features/songs/s
 import Recently from '../Recently/Recently';
 import './historial-song.scss';
 
-const HistorialSongs = () => {
+const HistorialSongs = ({ handleLogout }: any) => {
   const { token, id_client } = useAppSelector(selectAuth);
   const songs = useAppSelector(selectSong);
   const dispatch = useAppDispatch();
@@ -16,6 +16,7 @@ const HistorialSongs = () => {
     clientId: id_client,
   });
 
+  // Make a request to the api by artist, album or song
   useEffect(() => {
     spotifyApi.setAccessToken(token);
     spotifyApi
@@ -38,11 +39,12 @@ const HistorialSongs = () => {
           };
         });
         dispatch(setHistorial(historialData));
+        localStorage.setItem('historial', JSON.stringify(historialData));
       })
       .catch((error: any) => {
-        console.log('Something went wrong!', error);
+        console.log('Authentication error', error);
       });
-  }, [token, songs.play_song]);
+  }, [token, songs.play_song.uri]);
 
   const handlePlay = (song: Songs) => {
     dispatch(setPlay(song));

@@ -8,12 +8,12 @@ const Player = ({ accessToken }: any) => {
   const [play, setPlay] = useState(false);
   const songs = useAppSelector(selectSong);
 
+  // Play the song automatically
   useEffect(() => setPlay(true), [songs]);
 
-  // if (!accessToken) return null;
   return (
     <div className="player">
-      {songs.play_song && (
+      {songs.play_song.uri !== '' && (
         <SpotifyPlayer
           token={accessToken}
           showSaveIcon
